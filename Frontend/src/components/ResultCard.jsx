@@ -10,28 +10,33 @@ const ResultCard = ({ lastUrl }) => {
 
   return (
 
-    <div className="mt-8 bg-slate-800 p-5 rounded-lg max-w-xl mx-3">
+    <div className="w-full px-4 mt-8 flex justify-center">
 
-      <p className="text-slate-400 mb-2">
-        Your Short Link
-      </p>
+      <div className="bg-slate-800 p-5 rounded-lg w-full max-w-2xl shadow-md">
 
-      <div className="flex justify-between items-center">
+        <p className="text-slate-400 mb-3 text-sm sm:text-base">
+          Your Short Link
+        </p>
 
-        <a
-          href={`${BACKEND_URL}/${lastUrl}`}
-          target="_blank"
-          className="text-blue-400 hover:underline break-all"
-        >
-          trimly/{lastUrl}
-        </a>
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
 
-        <button
-          onClick={copyLink}
-          className="bg-blue-600 cursor-pointer px-3 py-1 rounded text-white text-sm"
-        >
-          Copy
-        </button>
+          <a
+            href={`${BACKEND_URL}/${lastUrl}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 hover:underline break-all flex-1"
+          >
+            trimly/{lastUrl}
+          </a>
+
+          <button
+            onClick={copyLink}
+            className="bg-blue-600 cursor-pointer hover:bg-blue-700 px-4 py-2 rounded text-white text-sm font-medium transition"
+          >
+            Copy
+          </button>
+
+        </div>
 
       </div>
 
