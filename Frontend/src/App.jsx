@@ -1,10 +1,12 @@
 import { useState } from "react";
 import api from "./axios.js";
 
+const BACKEND_URL = "https://url-shortner-h2wp.onrender.com";
+
 const App = () => {
 
   const [inputVal, setInputVal] = useState("");
-  const [shortUrls, setShortUrls] = useState([]);
+  const [lastUrl, setLastUrl] = useState(null);
 
   const formHandler = async (e) => {
     e.preventDefault();
@@ -12,13 +14,13 @@ const App = () => {
     if (!inputVal) return;
 
     try {
-      const res = await api.post("/short", { originalUrl: inputVal });
+      const res = await api.post("/short", {
+        originalUrl: inputVal
+      });
 
-      const newShort = {
+      setLastUrl({
         shortId: res.data.shortenUrl
-      };
-
-      setShortUrls(prev => [...prev, newShort]);
+      });
 
     } catch (err) {
       console.log("Error:", err);
@@ -27,26 +29,28 @@ const App = () => {
     setInputVal("");
   };
 
-  const lastUrl = shortUrls[shortUrls.length - 1];
+  const copyLink = () => {
+    navigator.clipboard.writeText(`${BACKEND_URL}/${lastUrl.shortId}`);
+  };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-900 px-4">
+    <div className="min-h-screen bg-slate-900 flex items-center justify-center px-4">
 
-      <div className="bg-slate-800 p-8 rounded-xl shadow-lg w-full max-w-lg">
+      <div className="bg-slate-800 p-8 rounded-xl shadow-xl w-full max-w-lg">
 
         <h1 className="text-3xl font-bold text-white text-center mb-2">
-          URL Shortener
+          Trimly URL Shortener
         </h1>
 
         <p className="text-slate-400 text-center mb-6">
-          Turn long links into short, shareable URLs
+          Paste a long URL and create a short shareable link
         </p>
 
         <form onSubmit={formHandler} className="flex gap-2">
 
           <input
             type="text"
-            placeholder="Paste your long URL..."
+            placeholder="https://example.com/very-long-url"
             value={inputVal}
             onChange={(e) => setInputVal(e.target.value)}
             className="flex-1 px-4 py-2 rounded-lg bg-slate-700 text-white outline-none focus:ring-2 focus:ring-blue-500"
@@ -61,21 +65,34 @@ const App = () => {
         </form>
 
         {lastUrl && (
+
           <div className="mt-6 bg-slate-700 p-4 rounded-lg">
 
             <p className="text-slate-300 mb-2">
               Your Short Link
             </p>
 
-            <a
-              href={`http://localhost:5000/${lastUrl.shortId}`}
-              target="_blank"
-              className="text-blue-400 break-all hover:underline"
-            >
-              http://localhost:5000/{lastUrl.shortId}
-            </a>
+            <div className="flex items-center justify-between">
+
+              <a
+                href={`${BACKEND_URL}/${lastUrl.shortId}`}
+                target="_blank"
+                className="text-blue-400 hover:underline break-all"
+              >
+                trimly/{lastUrl.shortId}
+              </a>
+
+              <button
+                onClick={copyLink}
+                className="ml-3 bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-sm text-white"
+              >
+                Copy
+              </button>
+
+            </div>
 
           </div>
+
         )}
 
       </div>
