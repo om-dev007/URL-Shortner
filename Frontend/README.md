@@ -1,16 +1,63 @@
-# React + Vite
+# 🎨 Trimly Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend of **Trimly URL Shortener** built with **React and Tailwind CSS**.
 
-Currently, two official plugins are available:
+It allows users to:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* Enter a long URL
+* Generate a short link
+* Copy the short URL
+* Open the redirected page
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# 🛠 Tech Stack
 
-## Expanding the ESLint configuration
+* React
+* Tailwind CSS
+* Axios
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+# 📦 Installation
+
+Install dependencies
+
+```
+npm install
+```
+
+Run development server
+
+```
+npm run dev
+```
+
+---
+
+# 🌐 API Connection
+
+Frontend connects to backend API:
+
+```
+https://url-shortner-h2wp.onrender.com
+```
+
+---
+
+# 🧠 How It Works
+
+1. User submits a long URL.
+2. React sends POST request to backend.
+3. Backend returns shortId.
+4. Frontend displays short link.
+5. User clicks the link → backend redirects.
+
+---
+
+# ⚡ UI Features
+
+* Responsive design
+* Clean dark UI
+* Copy link button
+* Instant short URL display
