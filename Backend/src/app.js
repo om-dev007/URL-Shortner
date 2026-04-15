@@ -11,5 +11,8 @@ app.use(cors({
     methods: ["GET", "POST", "PUT", "DELETE"]
 }));
 app.use("/", urlRoutes);
+app.get("/", (req, res) => {
+    res.send("Welcome to Trimly URL Shortener API");
+});
 
 export default app
