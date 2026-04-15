@@ -1,4 +1,4 @@
-const BACKEND_URL = "https://trimly-back.vercel.app";
+const BACKEND_URL = "https://trimly-back.vercel.app/api";
 
 const ResultCard = ({ lastUrl }) => {
 

@@ -2,6 +2,9 @@ import urlModel from "../models/dbModel.js";
 import { nanoid } from "nanoid";
 
 export const createShortUrl = async (req, res) => {
+
+    // res.send("Welcome to Trimly URL Shortener API...");
+    
     const {originalUrl} = req.body;
 
     if(!originalUrl) {
@@ -9,8 +12,6 @@ export const createShortUrl = async (req, res) => {
             message: "Please enter the input field"
         })
     }
-
-    res.send("Welcome to Trimly URL Shortener API...");
 
     const id = nanoid(8);
     const shortenUrl = await urlModel.create({
