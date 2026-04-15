@@ -4,12 +4,15 @@ import cors from 'cors';
 
 const app = e();
 
-app.use(e.json());
 app.use(cors({
-    origin: "*",
-    credentials: false,
-    methods: ["GET", "POST", "PUT", "DELETE"]
+  origin: [
+    "http://localhost:5173",
+    "https://trimly-in.vercel.app"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
 }));
+app.use(e.json());
 app.use("/api", urlRoutes);
 
 app.get("/", (req, res) => {

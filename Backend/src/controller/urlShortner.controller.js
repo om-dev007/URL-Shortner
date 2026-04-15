@@ -2,28 +2,36 @@ import urlModel from "../models/dbModel.js";
 import { nanoid } from "nanoid";
 
 export const createShortUrl = async (req, res) => {
+    try {
+        const { originalUrl } = req.body;
+        console.log("Original URL: ", req.body);
 
-    // res.send("Welcome to Trimly URL Shortener API...");
-    
-    const {originalUrl} = req.body;
+        if (!originalUrl) {
+            return res.status(400).json({
+                message: "Please enter the input field"
+            });
+        }
 
-    if(!originalUrl) {
-        return res.status(400).json({
-            message: "Please enter the input field"
-        })
+        const id = nanoid(8);
+
+        const shortenUrl = await urlModel.create({
+            originalUrl: originalUrl,
+            shortId: id,
+        });
+
+        return res.status(201).json({
+            message: "Url shorten successfully",
+            shortenUrl: shortenUrl.shortId
+        });
+
+    } catch (err) {
+        console.log("ERROR 👉", err);
+        return res.status(500).json({
+            message: "Internal server error",
+            error: err.message
+        });
     }
-
-    const id = nanoid(8);
-    const shortenUrl = await urlModel.create({
-        originalUrl: originalUrl,
-        shortId: id,
-    })
-
-    return res.status(201).json({
-        message: "Url shorten successfully",
-        shortenUrl: shortenUrl.shortId
-    })
-}
+};
 
 export const getShortUrl = async (req, res) => {
     const shortId = await urlModel.find();
@@ -32,6 +40,7 @@ export const getShortUrl = async (req, res) => {
             message: "No url found"
         })
     }
+
     return res.status(200).json({
         message: "Fetched successfully",
         shortId
