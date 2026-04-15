@@ -1,4 +1,6 @@
-const BACKEND_URL = "https://trimly-back.vercel.app/api";
+import api from "../services/api";
+
+const BACKEND_URL = api.defaults.baseURL;
 
 const ResultCard = ({ lastUrl }) => {
 
