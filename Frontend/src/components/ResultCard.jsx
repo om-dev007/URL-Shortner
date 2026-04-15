@@ -1,4 +1,4 @@
-const BACKEND_URL = "https://url-shortner-production-ca2f.up.railway.app/api";
+const BACKEND_URL = "https://url-shortner-h2wp.onrender.com/api";
 
 const ResultCard = ({ lastUrl }) => {
 

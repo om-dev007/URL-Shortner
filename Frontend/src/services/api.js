@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://url-shortner-production-ca2f.up.railway.app/api",
+    baseURL: "https://url-shortner-h2wp.onrender.com/api",
     withCredentials: false
 })
 
