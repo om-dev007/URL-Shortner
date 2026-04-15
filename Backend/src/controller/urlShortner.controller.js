@@ -10,6 +10,8 @@ export const createShortUrl = async (req, res) => {
         })
     }
 
+    res.send("Welcome to Trimly URL Shortener API...");
+
     const id = nanoid(8);
     const shortenUrl = await urlModel.create({
         originalUrl: originalUrl,

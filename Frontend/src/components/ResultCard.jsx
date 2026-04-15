@@ -1,4 +1,4 @@
-const BACKEND_URL = "https://url-shortner-h2wp.onrender.com";
+const BACKEND_URL = "https://trimly-back.vercel.app";
 
 const ResultCard = ({ lastUrl }) => {
 
