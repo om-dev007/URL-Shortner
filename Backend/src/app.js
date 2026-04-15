@@ -10,4 +10,8 @@ app.use(express.json());
 
 app.use("/api", urlRoutes);
 
+app.get("/", (req, res) => {
+    res.send("Welcome to URL Shortener API");
+});
+
 export default app;
