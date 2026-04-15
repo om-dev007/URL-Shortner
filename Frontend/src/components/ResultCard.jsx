@@ -1,6 +1,4 @@
-import api from "../services/api";
-
-const BACKEND_URL = api.defaults.baseURL;
+const BACKEND_URL = "https://url-shortner-production-ca2f.up.railway.app/api";
 
 const ResultCard = ({ lastUrl }) => {
 
