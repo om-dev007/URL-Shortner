@@ -7,21 +7,21 @@ import Features from "../components/Features";
 const Home = () => {
 
   const [lastUrl, setLastUrl] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   return (
-
-    <div className="bg-slate-900 min-h-screen text-white">
+    <div className="min-h-screen text-white bg-linear-to-br from-[#0B0F19] via-[#0F172A] to-[#020617]">
 
       <Hero />
 
-      <UrlForm setLastUrl={setLastUrl} />
+      <UrlForm setLastUrl={setLastUrl} setLoading={setLoading} loading={loading} setError={setError} />
 
-      <ResultCard lastUrl={lastUrl} />
+      <ResultCard lastUrl={lastUrl} loading={loading} error={error} />
 
       <Features />
 
     </div>
-
   );
 };
 

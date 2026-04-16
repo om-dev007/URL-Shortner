@@ -1,6 +1,26 @@
-const BACKEND_URL = "https://url-shortner-h2wp.onrender.com/api";
+const BACKEND_URL = "http://localhost:5000/api";
 
-const ResultCard = ({ lastUrl }) => {
+const ResultCard = ({ lastUrl, loading, error }) => {
+
+  if (loading) {
+    return (
+      <div className="w-full px-4 mt-10 flex justify-center">
+        <div className="bg-white/5 backdrop-blur-lg border border-white/10 p-8 rounded-2xl w-full max-w-2xl flex justify-center items-center shadow-xl">
+          <div className="w-12 h-12 border-4 border-white/10 border-t-violet-500 rounded-full animate-spin"></div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="w-full px-4 mt-10 flex justify-center">
+        <div className="bg-red-500/10 border border-red-500/30 text-red-400 p-6 rounded-2xl w-full max-w-2xl text-center backdrop-blur-lg">
+          {error}
+        </div>
+      </div>
+    );
+  }
 
   if (!lastUrl) return null;
 
@@ -9,29 +29,27 @@ const ResultCard = ({ lastUrl }) => {
   };
 
   return (
+    <div className="w-full px-4 mt-10 flex justify-center">
+      <div className="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-2xl w-full max-w-2xl shadow-xl">
 
-    <div className="w-full px-4 mt-8 flex justify-center">
-
-      <div className="bg-slate-800 p-5 rounded-lg w-full max-w-2xl shadow-md">
-
-        <p className="text-slate-400 mb-3 text-sm sm:text-base">
+        <p className="text-slate-400 mb-3 text-sm">
           Your Short Link
         </p>
 
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4">
 
           <a
             href={`${BACKEND_URL}/${lastUrl}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-400 hover:underline break-all flex-1"
+            className="text-cyan-400 hover:underline break-all flex-1"
           >
             trimly/{lastUrl}
           </a>
 
           <button
             onClick={copyLink}
-            className="bg-blue-600 cursor-pointer hover:bg-blue-700 px-4 py-2 rounded text-white text-sm font-medium transition"
+            className="bg-linear-to-r from-violet-600 to-cyan-500 hover:from-violet-500 hover:to-cyan-400 px-4 py-2 rounded-xl text-white text-sm font-medium shadow-lg shadow-violet-500/20 transition-all"
           >
             Copy
           </button>
@@ -39,9 +57,7 @@ const ResultCard = ({ lastUrl }) => {
         </div>
 
       </div>
-
     </div>
-
   );
 };
 
