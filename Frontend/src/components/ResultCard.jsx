@@ -1,6 +1,10 @@
+import { useState } from "react";
+
 const BACKEND_URL = "http://localhost:5000/api";
 
 const ResultCard = ({ lastUrl, loading, error }) => {
+
+  const [copied, setCopied] = useState(false);
 
   if (loading) {
     return (
@@ -26,6 +30,11 @@ const ResultCard = ({ lastUrl, loading, error }) => {
 
   const copyLink = () => {
     navigator.clipboard.writeText(`${BACKEND_URL}/${lastUrl}`);
+    setCopied(true);
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
   };
 
   return (
@@ -49,9 +58,13 @@ const ResultCard = ({ lastUrl, loading, error }) => {
 
           <button
             onClick={copyLink}
-            className="bg-linear-to-r from-violet-600 to-cyan-500 hover:from-violet-500 hover:to-cyan-400 px-4 py-2 rounded-xl text-white text-sm font-medium shadow-lg shadow-violet-500/20 transition-all"
+            className={`px-4 cursor-pointer py-2 rounded-xl text-sm font-medium transition-all ${
+              copied
+                ? "bg-green-500 text-white"
+                : "bg-linear-to-r from-violet-600 to-cyan-500 hover:from-violet-500 hover:to-cyan-400 text-white shadow-lg shadow-violet-500/20"
+            }`}
           >
-            Copy
+            {copied ? "Copied!" : "Copy"}
           </button>
 
         </div>

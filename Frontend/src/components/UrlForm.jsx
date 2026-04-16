@@ -61,7 +61,7 @@ const UrlForm = ({ setLastUrl, setLoading, loading, setError }) => {
         />
 
         <button disabled={loading}
-          className="px-6 py-3 rounded-xl font-semibold text-white bg-linear-to-r from-violet-600 to-cyan-500 hover:from-violet-500 hover:to-cyan-400 shadow-lg shadow-violet-500/20 transition-all"
+          className="px-6 py-3 cursor-pointer rounded-xl font-semibold text-white bg-linear-to-r from-violet-600 to-cyan-500 hover:from-violet-500 hover:to-cyan-400 shadow-lg shadow-violet-500/20 transition-all"
         >
           {loading ? "..." : "Shorten"}
         </button>
