@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const BACKEND_URL = "http://localhost:5000/api";
+const BACKEND_URL = "https://url-shortner-h2wp.onrender.com/api";
 
 const ResultCard = ({ lastUrl, loading, error }) => {
 
